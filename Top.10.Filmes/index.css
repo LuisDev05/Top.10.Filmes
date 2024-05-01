@@ -1,16 +1,69 @@
 body{
     background-color: rgb(34,34,34);
     color: white;
-    text-align: center;          
+    
+   }
+section{
+    font-size: 1.5rem;
+    margin-inline: auto;
+    padding-block: var(--scroll-height);
+    width: min(60ch, 100%);
 }
 
-
-.movie{
-    display: inline-block;
-    max-width: 500px;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-  
+p, h1, h2, a {
+   animation: appear 1ms ease-in-out;
+   animation-timeline: view();
+   animation-range: cover 0% cover 50%;
 }
 
+:root{
+    --scroll-height:25px;
+}
+
+img{
+    animation: reveal 1,s ease-in-out both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+}
+
+.indicador{
+    animation: scroll 1ms ease-in-out;
+    animation-timeline: scroll();
+    background-color: rgb(132,14,201);
+    transform-origin: left;
+    height: var(--scroll-height);
+    inset: 0;
+    position: fixed;
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+        translate: -100vw 0;
+    }
+
+
+    to{
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes scroll {
+    from{
+        scale: 0 1;
+    }
+    to{
+        scale: 1 1;
+    }
+}
+
+@keyframes reveal {
+    from{
+        opacity: 0;
+        clip-path: inset (45% 20% 45% 20%);
+    }
+    to{
+        opacity: 1;
+        clip-path: inset(0% 0% 0% 0%);
+    }
+}
